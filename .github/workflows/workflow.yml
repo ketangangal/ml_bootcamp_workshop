@@ -58,7 +58,7 @@ jobs:
         run: docker build -t ghcr.io/k10/inference:latest .
 
       - name: Push the Package
-        run: docker push ghcr.io/k10/inference:latest
+        run: docker push ghcr.io/k10/inference
 
 
 
