@@ -52,13 +52,13 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.DOCKER_ACCESS }}
       
       - name: Build the Package
         run: docker build -t ghcr.io/k10/inference:latest .
 
       - name: Push the Package
-        run: docker push ghcr.io/k10/inference
+        run: docker push ghcr.io/k10/inference:latest
 
 
 
