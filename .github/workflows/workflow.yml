@@ -2,11 +2,18 @@ name: cicd
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
-  build:
-
+  integration:
+    name: Continuous Integration
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,16 +26,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install ruff pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Lint with ruff
+      - name: Lint Code
         run: |
           # stop the build if there are Python syntax errors or undefined names
           ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
 
           # default set of ruff rules with GitHub Annotations
           ruff --format=github --target-version=py37 .
+
