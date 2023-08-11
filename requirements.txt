@@ -3,3 +3,5 @@ uvicorn
 xgboost
 scikit-learn
 joblib
+pandas
+category_encoders
