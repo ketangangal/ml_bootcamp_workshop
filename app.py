@@ -7,26 +7,27 @@ app = FastAPI()
 
 @app.get("/get_schema")
 async def schema():
-    data = {'service': 0.9910802775024777,
-            'flag': 0.997636306334699,
-            'src_bytes': 491,
-            'dst_bytes': 0,
-            'count': 2,
-            'same_srv_rate': 1.0,
-            'diff_srv_rate': 0.0,
-            'dst_host_srv_count': 25,
-            'dst_host_same_srv_rate': 0.17,
-            'dst_host_same_src_port_rate': 0.17
-            }
+    data = {
+        'flag': {12: 0.997636306334699},
+        'dst_host_serror_rate': {12: 0.0},
+        'service': {12: 0.9997356245869135},
+        'dst_host_srv_serror_rate': {12: 0.0},
+        'protocol_type': {12: 0.9883398112159911},
+        'srv_serror_rate': {12: 0.0},
+        'same_srv_rate': {12: 1.0},
+        'count': {12: 14},
+        'src_bytes': {12: 215},
+        'serror_rate': {12: 0.0}
+        }
     return {"schema": data}
 
 
 @app.post("/predict")
 async def predict(data: dict):
     list_values = preprocess(data)
-    result = score(list_values)
-    response = postprocess(result)
-    return {"Result": response[0]}
+    scores = score(list_values)
+    response = postprocess(scores)
+    return {"Result": str(response)}
 
 
 if __name__ == "__main__":

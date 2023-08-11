@@ -6,10 +6,10 @@ import pandas as pd
 def preprocess(data: dict) -> list:
     """ This Function preprocess the data before scoring the model """
     data_frame = pd.DataFrame(data)
-    print(data_frame)
     path = os.path.join(os.getcwd(), "model_store", "scaler.pkl")
     scaler = load(path)
     return scaler.transform(data_frame)
+
 
 
 def score(data: list) -> int:
