@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi import Request
 from inference import preprocess, score, postprocess
 import uvicorn
 
@@ -22,11 +23,15 @@ async def schema():
 
 
 @app.post("/predict")
-async def predict(data: dict):
-    list_values = preprocess(data)
-    result = score(list_values)
-    response = postprocess(result)
-    return {"Result": response[0]}
+async def predict(request: Request):
+    data = dict(await request.json())
+    print(data)
+    print(type(data))
+    # list_values = preprocess(data)
+    # result = score(list_values)
+    # response = postprocess(result)
+    # return {"Result": response[0]}
+    return {"Result": data}
 
 
 if __name__ == "__main__":
