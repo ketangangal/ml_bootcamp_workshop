@@ -7,6 +7,7 @@ app = FastAPI()
 
 @app.get("/get_schema")
 async def schema():
+    """ This is Schema of the code"""
     data = {'count': {12: 14},
             'dst_host_srv_serror_rate': {12: 0.0},
             'dst_host_serror_rate': {12: 0.0},
