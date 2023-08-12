@@ -81,7 +81,5 @@ jobs:
 
       - name: Run Docker Image to serve users
         run: |
-          docker run --name=inference -p 8080:8000 ketangangal/inference:latest
-
-
+          docker run -d --name=inference -p 8080:8000 ketangangal/inference:latest
 
