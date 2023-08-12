@@ -59,6 +59,29 @@ jobs:
       - name: Push the Package
         run: docker push ketangangal/inference:latest
 
+pull-and-start-app:
+    name: Continuous Deployment
+    needs: build-push-package
+    runs-on: self-hosted
+    steps:
+      - name: Login to Container Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Pull Package
+        run: sudo docker pull ketangangal/inference:latest
+
+      - name: Remove Already Running Container
+        run: docker ps -q --filter "name=inference" | grep -q . && docker stop ${IMAGE_NAME} && docker rm -fv ${IMAGE_NAME} || true
+
+      - name: Docker System Prune to Remove Old Images
+        run: sudo docker system prune -f
+
+      - name: Run Docker Image to serve users
+        run: |
+          docker run --name=inference -p 8080:8000 ketangangal/inference:latest
 
 
 
