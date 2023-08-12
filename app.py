@@ -7,18 +7,18 @@ app = FastAPI()
 
 @app.get("/get_schema")
 async def schema():
-    data = {
-        'flag': {12: 0.997636306334699},
-        'dst_host_serror_rate': {12: 0.0},
-        'service': {12: 0.9997356245869135},
-        'dst_host_srv_serror_rate': {12: 0.0},
-        'protocol_type': {12: 0.9883398112159911},
-        'srv_serror_rate': {12: 0.0},
-        'same_srv_rate': {12: 1.0},
-        'count': {12: 14},
-        'src_bytes': {12: 215},
-        'serror_rate': {12: 0.0}
-        }
+    data = {'count': {12: 14},
+            'dst_host_srv_serror_rate': {12: 0.0},
+            'dst_host_serror_rate': {12: 0.0},
+            'same_srv_rate': {12: 1.0},
+            'diff_srv_rate': {12: 0.0},
+            'src_bytes': {12: 215},
+            'srv_count': {12: 14},
+            'srv_serror_rate': {12: 0.0},
+            'dst_host_srv_diff_host_rate': {12: 0.0},
+            'dst_host_srv_count': {12: 255},
+            'dst_host_count': {12: 255}
+            }
     return {"schema": data}
 
 
