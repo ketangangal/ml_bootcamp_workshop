@@ -59,7 +59,7 @@ jobs:
       - name: Push the Package
         run: docker push ketangangal/inference:latest
 
-pull-and-start-app:
+  pull-and-start-app:
     name: Continuous Deployment
     needs: build-push-package
     runs-on: self-hosted
