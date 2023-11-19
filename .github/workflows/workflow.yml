@@ -40,7 +40,7 @@ jobs:
           # # default set of ruff rules with GitHub Annotations
           # ruff --format=github --target-version=py37 .
           echo "Lint Completed"
-          
+
   build-push-package:
     name: Continuous Build and Push
     needs: integration
@@ -75,7 +75,8 @@ jobs:
         run: sudo docker pull ketangangal/inference:latest
 
       - name: Remove Already Running Container
-        run: docker ps -q --filter "name=inference" | grep -q . && docker stop ${IMAGE_NAME} && docker rm -fv ${IMAGE_NAME} || true
+        run: |
+          docker ps -q --filter "name=inference" | grep -q . && docker stop inference && docker rm -fv inference || true
 
       - name: Docker System Prune to Remove Old Images
         run: sudo docker system prune -f
