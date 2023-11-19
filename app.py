@@ -30,6 +30,12 @@ async def predict(data: dict):
     response = postprocess(scores)
     return {"Result": str(response)}
 
+@app.get("/hello")
+async def hello():
+    """ This is Schema of the code"""
+    data = {"response": "Hello"}
+    return {"schema": data}
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
