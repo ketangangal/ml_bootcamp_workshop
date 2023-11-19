@@ -30,10 +30,10 @@ async def predict(data: dict):
     response = postprocess(scores)
     return {"Result": str(response)}
 
-@app.get("/hello")
-async def hello():
+@app.get("/done")
+async def done():
     """ This is Schema of the code. hello world"""
-    data = {"response": "Hello"}
+    data = {"response": "done"}
     return {"schema": data}
 
 
