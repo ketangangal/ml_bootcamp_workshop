@@ -85,3 +85,4 @@ jobs:
         run: |
           docker run -d --name=inference -p 8080:8000 ketangangal/inference:latest
 
+
