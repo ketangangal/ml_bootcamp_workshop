@@ -35,3 +35,4 @@ mkdir actions-runner && cd actions-runner
 sudo ./svc.sh install
 sudo ./svc.sh start
 sudo ./svc.sh status
+
